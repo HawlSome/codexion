@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/07/28 12:55:58 by varandri         ###   ########.fr       */
+/*   Updated: 2026/07/28 12:57:35 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,4 @@ t_coder	*create_coders(int numbers, int dongle_cood_down)
 	last_coder(coder)->next_coder = coder;
 	coder->prev_coder = last_coder(coder);
 	return (coder);
-}
-
-int	get_dongle(t_coder *coder)
-{
-	if (!coder)
-		return (0);
-	return (0);
 }
