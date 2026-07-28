@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 08:41:55 by varandri          #+#    #+#             */
-/*   Updated: 2026/07/28 14:10:33 by varandri         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:56:28 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_dongle
 
 typedef struct s_coder
 {
-	pthread_t		thread;
+	// pthread_t		thread;
 	int				number;
 	int				compile_time;
 	int				debug_time;

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/07/28 13:41:30 by varandri         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:56:42 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_coder	*new_coder(int number)
 	t_coder		*coder;
 
 	coder = (t_coder *)malloc(sizeof(t_coder));
-	coder->thread = NULL;
+	// coder->thread = NULL;
 	coder->number = number;
 	coder->compile_time = 0;
 	coder->debug_time = 0;
@@ -47,10 +47,10 @@ t_coder	*last_coder(t_coder *coder)
 {
 	while (coder && !coder->is_last)
 		coder = coder->next_coder;
-	retun(coder);
+	return (coder);
 }
 
-t_coder	*create_coders(int numbers, int dongle_cood_down)
+t_coder	*create_coders(int numbers)
 {
 	t_coder		*coder;
 	int			i;

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:16:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/07/28 14:12:35 by varandri         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:05:35 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	set_config(t_config *config, int *arg_conf, char *scheduler)
 	config->compile_required = arg_conf[5];
 	config->dongle_cool_down = arg_conf[6];
 	config->scheduler = scheduler;
-	return (config);
 }
 
 int	*parse_config(int argc, char **argv, char **scheduler)
@@ -59,6 +58,6 @@ int	*parse_config(int argc, char **argv, char **scheduler)
 		arg_conf[i - 1] = atoi(argv[i]);
 		i++;
 	}
-	scheduler = *argv[i];
+	*scheduler = argv[argc - 1];
 	return (arg_conf);
 }
