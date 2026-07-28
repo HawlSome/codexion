@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/07/28 12:57:35 by varandri         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:41:30 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_dongle	*new_dongle(int cool_down)
 	return (dongle);
 }
 
-t_coder	*new_coder(int number, int dongle_cool_down)
+t_coder	*new_coder(int number)
 {
 	t_coder		*coder;
 
@@ -34,8 +34,7 @@ t_coder	*new_coder(int number, int dongle_cool_down)
 	coder->debug_time = 0;
 	coder->refactor_time = 0;
 	coder->burnout_time = 0;
-	coder->compile_required = 0;
-	*(coder->dongle) = new_dongle(dongle_cool_down);
+	*(coder->dongle) = new_dongle(0);
 	coder->prev_coder = NULL;
 	coder->next_coder = NULL;
 	coder->is_last = 1;
@@ -62,11 +61,11 @@ t_coder	*create_coders(int numbers, int dongle_cood_down)
 	{
 		if (!coder)
 		{
-			coder = new_coder(i, dongle_cood_down);
+			coder = new_coder(i);
 			i++;
 			continue ;
 		}
-		last_coder(coder)->next_coder = new_coder(i, dongle_cood_down);
+		last_coder(coder)->next_coder = new_coder(i);
 		(last_coder(coder)->next_coder)->prev_coder = last_coder(coder);
 		last_coder(coder)->is_last = 0;
 		i++;
