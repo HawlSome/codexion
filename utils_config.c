@@ -6,13 +6,13 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:16:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/12 00:00:19 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:52:52 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_config.h"
 
-t_config	*new_config(void)
+static t_config	*new_config(void)
 {
 	t_config	*config;
 
@@ -30,7 +30,27 @@ t_config	*new_config(void)
 	return (config);
 }
 
-void	set_config(t_config *config, int *arg_conf, char *scheduler)
+static int	*parse_config(int argc, char **argv, char **scheduler)
+{
+	int	*arg_conf;
+	int	i;
+
+	if (argc != 9 || !*argv || !argv)
+		return (NULL);
+	arg_conf = (int *)malloc((argc - 2) * sizeof(int));
+	if (!arg_conf)
+		return (NULL);
+	i = 1;
+	while (i < argc - 1)
+	{
+		arg_conf[i - 1] = atoi(argv[i]);
+		i++;
+	}
+	*scheduler = argv[argc - 1];
+	return (arg_conf);
+}
+
+static void	set_config(t_config *config, int *arg_conf, char *scheduler)
 {
 	if (!config)
 		return ;
@@ -44,20 +64,13 @@ void	set_config(t_config *config, int *arg_conf, char *scheduler)
 	config->scheduler = scheduler;
 }
 
-int	*parse_config(int argc, char **argv, char **scheduler)
+void	create_config(int argc, char **argv, t_config **config)
 {
-	int	*arg_conf;
-	int	i;
+	int		*arg_conf;
+	char	*scheduler;
 
-	if (argc != 9 || !*argv || !argv)
-		return (NULL);
-	arg_conf = (int *)malloc((argc - 2) * sizeof(int));
-	i = 1;
-	while (i < argc)
-	{
-		arg_conf[i - 1] = atoi(argv[i]);
-		i++;
-	}
-	*scheduler = argv[argc - 1];
-	return (arg_conf);
+	*config = new_config();
+	arg_conf = parse_config(argc, argv, &scheduler);
+	set_config(*config, arg_conf, scheduler);
+	free(arg_conf);
 }

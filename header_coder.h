@@ -6,13 +6,12 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 08:41:55 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/11 09:05:12 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:39:09 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header_config.h"
 #include <pthread.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 typedef struct s_dongle
 {
@@ -33,3 +32,6 @@ typedef struct s_coder
 	struct s_coder	*next_coder;
 	int				is_last;
 }		t_coder;
+
+t_coder	*create_coders(int numbers);
+void	set_coders(t_coder *coders, t_config config);

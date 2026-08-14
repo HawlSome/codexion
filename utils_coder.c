@@ -6,13 +6,36 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/12 00:35:40 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:36:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_coder.h"
 
-t_dongle	*new_dongle(int cool_down)
+static t_coder	*last_coder(t_coder *coder)
+{
+	while (coder && coder->next_coder && !coder->is_last)
+		coder = coder->next_coder;
+	return (coder);
+}
+
+static void	arrange_coders(t_coder *coder)
+{
+	t_coder	*first_coder;
+
+	if (!coder)
+		return ;
+	first_coder = coder;
+	first_coder->prev_coder = last_coder(coder);
+	while (coder && !coder->is_last)
+	{
+		(coder->next_coder)->prev_coder = coder;
+		coder = coder->next_coder;
+	}
+	coder->next_coder = first_coder;
+}
+
+static t_dongle	*new_dongle(int cool_down)
 {
 	t_dongle	*dongle;
 
@@ -23,7 +46,7 @@ t_dongle	*new_dongle(int cool_down)
 	return (dongle);
 }
 
-t_coder	*new_coder(int number)
+static t_coder	*new_coder(int number)
 {
 	t_coder		*coder;
 
@@ -40,29 +63,6 @@ t_coder	*new_coder(int number)
 	coder->next_coder = NULL;
 	coder->is_last = 1;
 	return (coder);
-}
-
-t_coder	*last_coder(t_coder *coder)
-{
-	while (coder && coder->next_coder && !coder->is_last)
-		coder = coder->next_coder;
-	return (coder);
-}
-
-void	arrange_coders(t_coder *coder)
-{
-	t_coder	*first_coder;
-
-	if (!coder)
-		return ;
-	first_coder = coder;
-	first_coder->prev_coder = last_coder(coder);
-	while (coder && !coder->is_last)
-	{
-		(coder->next_coder)->prev_coder = coder;
-		coder = coder->next_coder;
-	}
-	coder->next_coder = first_coder;
 }
 
 t_coder	*create_coders(int numbers)
