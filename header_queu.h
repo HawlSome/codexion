@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_coder_1.c                                    :+:      :+:    :+:   */
+/*   header_queu.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 11:42:36 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/15 23:52:06 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/15 23:15:54 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/15 23:58:50 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_coder.h"
-#include "header_config.h"
+#ifndef HEADER_QUEU_H
+# define HEADER_QUEU_H
+# include "header_coder.h"
 
-void	set_coders(t_coder *coders, t_config *config)
+typedef struct s_queue
 {
-	int	i;
+	t_coder			*coder;
+	struct s_queue	*next;
+}		t_queu;
 
-	i = 0;
-	while (i < config->coders_count)
-	{
-		coders->burnout_time = config->burnout_time;
-		coders->compile_time = config->compile_time;
-		coders->debug_time = config->debug_time;
-		coders->refactor_time = config->refactor_time;
-		coders = coders->next;
-		i ++;
-	}
-}
+void	queu_add_last(t_queu **queu, t_coder *coder);
+void	queu_remove_first(t_queu **queu);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/14 12:36:25 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/15 23:25:08 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static t_coder	*last_coder(t_coder *coder)
 {
-	while (coder && coder->next_coder && !coder->is_last)
-		coder = coder->next_coder;
+	while (coder && coder->next && !coder->is_last)
+		coder = coder->next;
 	return (coder);
 }
 
@@ -26,13 +26,13 @@ static void	arrange_coders(t_coder *coder)
 	if (!coder)
 		return ;
 	first_coder = coder;
-	first_coder->prev_coder = last_coder(coder);
+	first_coder->prev = last_coder(coder);
 	while (coder && !coder->is_last)
 	{
-		(coder->next_coder)->prev_coder = coder;
-		coder = coder->next_coder;
+		(coder->next)->prev = coder;
+		coder = coder->next;
 	}
-	coder->next_coder = first_coder;
+	coder->next = first_coder;
 }
 
 static t_dongle	*new_dongle(int cool_down)
@@ -59,8 +59,8 @@ static t_coder	*new_coder(int number)
 	coder->refactor_time = 0;
 	coder->burnout_time = 0;
 	coder->dongle = new_dongle(0);
-	coder->prev_coder = NULL;
-	coder->next_coder = NULL;
+	coder->prev = NULL;
+	coder->next = NULL;
 	coder->is_last = 1;
 	return (coder);
 }
@@ -83,7 +83,7 @@ t_coder	*create_coders(int numbers)
 		}
 		tail = last_coder(coder);
 		tail->is_last = 0;
-		tail->next_coder = new_coder(i);
+		tail->next = new_coder(i);
 		i++;
 	}
 	arrange_coders(coder);
