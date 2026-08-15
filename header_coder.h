@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 08:41:55 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/15 23:27:58 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 00:27:41 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ typedef struct s_coder
 	int				is_last;
 }		t_coder;
 
-t_coder	*create_coders(int numbers);
+void	create_coders(int numbers, t_coder	**coder);
 void	set_coders(t_coder *coders, t_config *config);
 #endif

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/15 23:25:08 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/16 00:26:31 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,24 @@ static t_coder	*new_coder(int number)
 	return (coder);
 }
 
-t_coder	*create_coders(int numbers)
+void	create_coders(int numbers, t_coder	**coder)
 {
-	t_coder		*coder;
 	t_coder		*tail;
 	int			i;
 
 	i = 1;
-	coder = NULL;
 	while (i <= numbers)
 	{
-		if (!coder)
+		if (!*coder)
 		{
-			coder = new_coder(i);
+			*coder = new_coder(i);
 			i++;
 			continue ;
 		}
-		tail = last_coder(coder);
+		tail = last_coder(*coder);
 		tail->is_last = 0;
 		tail->next = new_coder(i);
 		i++;
 	}
-	arrange_coders(coder);
-	return (coder);
+	arrange_coders(*coder);
 }
