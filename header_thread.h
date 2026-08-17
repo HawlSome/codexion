@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 14:32:30 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/17 14:34:57 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 22:13:20 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define HEADER_THREAD_H
 # include "header_coder.h"
 
-void    create_threads(t_config *config, t_coder *coders);
+void	create_threads(t_config *config, t_coder *coders);
 
 #endif
