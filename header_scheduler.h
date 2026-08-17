@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   header_scheduler.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/25 07:35:57 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/17 14:06:09 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/17 13:59:48 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_queu.h"
+#ifndef HEADER_SCHEDULER_H
+# define HEADER_SCHEDULER_H
+#include "header_coder.h"
 
-int	main(int argc, char **argv)
-{
-	t_config	*conf;
-	t_coder		*coder;
 
-	create_config(argc, argv, &conf);
-	if (!conf)
-		return (0);
-	create_coders(conf->coders_count, &coder);
-	set_coders(coder, conf);
-	printf("%i", (coder->next)->number);
-	free(conf);
-	return (0);
-}
+
+#endif

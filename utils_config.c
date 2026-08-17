@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:16:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/14 12:52:52 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 13:59:13 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ void	create_config(int argc, char **argv, t_config **config)
 	int		*arg_conf;
 	char	*scheduler;
 
-	*config = new_config();
+	*config = NULL;
 	arg_conf = parse_config(argc, argv, &scheduler);
+	if (!arg_conf)
+		return ;
+	*config = new_config();
 	set_config(*config, arg_conf, scheduler);
 	free(arg_conf);
 }
