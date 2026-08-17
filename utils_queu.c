@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 23:26:24 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/17 12:55:54 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 21:31:42 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	queu_remove_elem(t_queu	**queu, t_coder *coder)
 	if (!queu || !*queu || !coder)
 		return ;
 	q = *queu;
-	while (q && q->coder && (q->coder)->number == coder->number)
+	while (q && q->coder && (q->coder)->id == coder->id)
 	{
 		next = q->next;
 		free(q);
@@ -75,7 +75,7 @@ void	queu_remove_elem(t_queu	**queu, t_coder *coder)
 	while (q)
 	{
 		next = q->next;
-		while (next && next->coder && (next->coder)->number == coder->number)
+		while (next && next->coder && (next->coder)->id == coder->id)
 		{
 			q->next = next->next;
 			free (next);
