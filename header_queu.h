@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 23:15:54 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/15 23:58:50 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 13:03:23 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ typedef struct s_queue
 
 void	queu_add_last(t_queu **queu, t_coder *coder);
 void	queu_remove_first(t_queu **queu);
+void	queu_remove_elem(t_queu	**queu, t_coder *coder);
 
 #endif

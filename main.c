@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 07:35:57 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/16 00:29:49 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 11:20:05 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (0);
 	create_coders(conf->coders_count, &coder);
 	set_coders(coder, conf);
-	printf("%i", coder->number);
+	printf("%i", (coder->next)->number);
 	free(conf);
 	return (0);
 }
