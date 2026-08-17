@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 08:41:55 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/17 13:13:37 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 14:34:22 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 typedef struct s_dongle
 {
 	pthread_mutex_t	mutex;
+	int				is_used;
 	int				cool_down;
 }		t_dongle;
 

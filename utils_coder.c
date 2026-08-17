@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 10:05:03 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/16 00:26:31 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 14:29:56 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	arrange_coders(t_coder *coder)
 	coder->next = first_coder;
 }
 
-static t_dongle	*new_dongle(int cool_down)
+static t_dongle	*new_dongle(int cool_down, int is_used)
 {
 	t_dongle	*dongle;
 
@@ -43,6 +43,7 @@ static t_dongle	*new_dongle(int cool_down)
 	if (!dongle)
 		return (NULL);
 	dongle->cool_down = cool_down;
+	dongle->is_used = is_used;
 	return (dongle);
 }
 
@@ -58,7 +59,7 @@ static t_coder	*new_coder(int number)
 	coder->debug_time = 0;
 	coder->refactor_time = 0;
 	coder->burnout_time = 0;
-	coder->dongle = new_dongle(0);
+	coder->dongle = new_dongle(0, 0);
 	coder->prev = NULL;
 	coder->next = NULL;
 	coder->is_last = 1;
