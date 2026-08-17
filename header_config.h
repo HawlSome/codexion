@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:06:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/15 23:22:32 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 13:13:43 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HEADER_CONFIG_H
 # include <stdlib.h>
 # include <stdio.h>
+# include <pthread.h>
 
 typedef struct s_config
 {

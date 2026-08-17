@@ -6,14 +6,13 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 08:41:55 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/16 00:27:41 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 13:13:37 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_CODER_H
 # define HEADER_CODER_H
 # include "header_config.h"
-# include <pthread.h>
 
 typedef struct s_dongle
 {
