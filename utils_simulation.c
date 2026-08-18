@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header_simulation.h                                :+:      :+:    :+:   */
+/*   utils_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/18 10:30:43 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/18 10:05:05 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/18 10:16:05 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_SIMULATION_H
-# define HEADER_SIMULATION_H
-# include "header_helpers.h"
+#include "header_simulation.h"
 
-typedef	struct s_arg
+t_arg	*new_arg(void)
 {
-	t_config	*config;
-	t_coder		*coder;
-}	t_arg;
+	t_arg	*arg;
 
-t_arg	*new_arg(void);
-void	*coder_routine(void *arg);
+	arg = (t_arg *)malloc(sizeof(t_arg));
+	if (!arg)
+		return (NULL);
+	arg->config = NULL;
+	arg->coder = NULL;
+	return (arg);
+}
 
-#endif
+void	*coder_routine(void *arg)
+{
+	t_arg	*coder_conf;
+
+	coder_conf = (t_arg *) arg;
+	return (NULL);
+}

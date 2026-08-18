@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header_simulation.h                                :+:      :+:    :+:   */
+/*   header_helpers.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/18 10:30:43 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/18 10:24:45 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/18 10:38:12 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_SIMULATION_H
-# define HEADER_SIMULATION_H
-# include "header_helpers.h"
+#ifndef HEADER_HELPERS_H
+# define HEADER_HELPERS_H
+# include "header_queu.h"
 
-typedef	struct s_arg
-{
-	t_config	*config;
-	t_coder		*coder;
-}	t_arg;
-
-t_arg	*new_arg(void);
-void	*coder_routine(void *arg);
+int     get_dongles(t_coder *coder);
+int     release_dongles(t_coder *coder);
+void    compile(void);
+void    refactor(void);
+void    debug(void);
 
 #endif

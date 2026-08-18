@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header_simulation.h                                :+:      :+:    :+:   */
+/*   utils_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/18 10:30:43 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/18 10:25:50 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/18 11:24:59 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_SIMULATION_H
-# define HEADER_SIMULATION_H
-# include "header_helpers.h"
+#include "header_helpers.h"
 
-typedef	struct s_arg
+int     get_dongles(t_coder *coder)
 {
-	t_config	*config;
-	t_coder		*coder;
-}	t_arg;
-
-t_arg	*new_arg(void);
-void	*coder_routine(void *arg);
-
-#endif
+	if (!coder || !(coder->l_dongle) || !(coder->r_dongle))
+		return (0);
+	if (!(coder->l_dongle)->is_used && !(coder->r_dongle)->is_used)
+	{
+		(coder->l_dongle)->is_used = 1;
+		(coder->r_dongle)->is_used = 1;
+		
+		return (1);
+	}
+	return (0);
+}
