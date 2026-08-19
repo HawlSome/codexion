@@ -6,13 +6,23 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 10:25:50 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/18 11:24:59 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 21:46:05 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_helpers.h"
 
-int     get_dongles(t_coder *coder)
+int	is_there_burn_out(t_coder *coders)
+{
+	while (coders)
+	{
+		if (coders->is_burnt_out)
+			return (1);
+		coders = coders->next;
+	}
+}
+
+int	get_dongles(t_coder *coder)
 {
 	if (!coder || !(coder->l_dongle) || !(coder->r_dongle))
 		return (0);
@@ -20,7 +30,6 @@ int     get_dongles(t_coder *coder)
 	{
 		(coder->l_dongle)->is_used = 1;
 		(coder->r_dongle)->is_used = 1;
-		
 		return (1);
 	}
 	return (0);

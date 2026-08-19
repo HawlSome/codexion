@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/18 10:30:43 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 21:43:03 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define HEADER_SIMULATION_H
 # include "header_helpers.h"
 
-typedef	struct s_arg
+typedef struct s_arg
 {
 	t_config	*config;
 	t_coder		*coder;
-}	t_arg;
+	t_coder		*coders;
+}		t_arg;
 
 t_arg	*new_arg(void);
 void	*coder_routine(void *arg);

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 11:42:36 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/17 21:57:54 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 20:53:09 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 void	set_coders(t_coder *coders, t_config *config)
 {
-	int	i;
-
-	i = 0;
-	while (i < config->coders_count && coders)
+	while (coders)
 	{
+		coders->required_compilation = config->compile_required;
 		coders->burnout_time = config->burnout_time;
 		coders->compile_time = config->compile_time;
 		coders->debug_time = config->debug_time;
@@ -30,6 +28,5 @@ void	set_coders(t_coder *coders, t_config *config)
 			(coders->r_dongle)->cool_down_time = config->dongle_cool_down;
 		}
 		coders = coders->next;
-		i ++;
 	}
 }
