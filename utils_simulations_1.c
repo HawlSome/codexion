@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header_simulation.h                                :+:      :+:    :+:   */
+/*   utils_simulations_1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/20 01:49:46 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/20 01:37:58 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/20 01:49:27 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_SIMULATION_H
-# define HEADER_SIMULATION_H
-# include "header_helpers.h"
+#include "header_simulation.h"
 
-typedef struct s_arg
+void	start_queu(t_queu **queu, t_coder *coders)
 {
-	t_config	*config;
-	t_coder		*coder;
-	t_coder		*coders;
-	t_queu		*queu;
-}		t_arg;
+	(*queu) = NULL;
+	while (coders)
+	{
+		queu_add_last(queu, coders);
+		coders = coders->next;
+	}
+}
 
-void	start_queu(t_queu **queu, t_coder *coders);
-void	start_threads(t_coder *coders, t_config *conf, t_queu *queu);
-void	join_threads(t_coder *coders);
-
-#endif
+void	join_threads(t_coder *coders)
+{
+	while (coders)
+	{
+		pthread_join(coders->thread, NULL);
+		coders = coders->next;
+	}
+}
