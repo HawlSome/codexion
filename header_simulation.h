@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 13:19:41 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/19 21:43:03 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/19 21:47:53 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_arg
 	t_coder		*coders;
 }		t_arg;
 
-t_arg	*new_arg(void);
-void	*coder_routine(void *arg);
+void	start_threads(t_coder *coders, t_config *conf);
+void	join_threads(t_coder *coders);
 
 #endif
