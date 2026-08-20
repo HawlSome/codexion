@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/20 23:32:42 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 23:54:14 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct s_dongle t_dongle;
+typedef struct s_dongle	t_dongle;
 
 typedef struct s_config
 {
@@ -44,9 +44,9 @@ typedef struct s_coder
 	struct s_coder	*next;
 }		t_coder;
 
-typedef	struct s_heap_queue
+typedef struct s_heap_queue
 {
-	t_coder **coders;
+	t_coder	**coders;
 	int		size;
 	int		capacity;
 }		t_heap_queue;
