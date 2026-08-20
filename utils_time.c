@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_coder.c                                      :+:      :+:    :+:   */
+/*   utils_time.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/21 00:52:18 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/21 00:30:40 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/21 00:52:30 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
 
-void	init_coders(t_coder **coders, t_config *conf)
+long	get_elapsed_ms(struct timeval *time)
 {
-	return ;
+	struct timeval	now;
+
+	gettimeofday(&now, NULL);
+	return (
+		(now.tv_sec - time->tv_sec) * 1000
+		+ (now.tv_usec - time->tv_usec) / 1000
+	);
 }
