@@ -1,28 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_queue.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/25 07:35:57 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/21 00:07:03 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/21 00:02:39 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/21 00:15:45 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
 
-int	main(int argc, char **argv)
-{
-	t_config	*conf;
-	t_coder		*coder;
-
-	create_config(argc, argv, &conf);
-	if (!conf)
-		return (0);
-	create_coders(conf->coders_count, &coder);
-	set_coders(coder, conf);
-	printf("%i", (coder->next)->id);
-	free(conf);
-	return (0);
-}

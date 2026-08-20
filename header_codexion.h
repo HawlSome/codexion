@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   header_codexion.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/25 07:35:57 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/21 00:07:03 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/20 23:59:58 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_codexion.h"
+#ifndef HEADER_CODEXION_H
+# define HEADER_CODEXION_H
+# include "header_struct.h"
 
-int	main(int argc, char **argv)
-{
-	t_config	*conf;
-	t_coder		*coder;
 
-	create_config(argc, argv, &conf);
-	if (!conf)
-		return (0);
-	create_coders(conf->coders_count, &coder);
-	set_coders(coder, conf);
-	printf("%i", (coder->next)->id);
-	free(conf);
-	return (0);
-}
+
+#endif
