@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:16:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/17 13:59:13 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 07:30:07 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ void	create_config(int argc, char **argv, t_config **config)
 		return ;
 	*config = new_config();
 	set_config(*config, arg_conf, scheduler);
+	pthread_mutex_init(&((*config)->mutex), NULL);
+	pthread_cond_init(&((*config)->cond), NULL);
 	free(arg_conf);
 }

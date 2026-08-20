@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 10:05:05 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/20 01:48:33 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 07:38:18 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ static t_arg	*new_arg(void)
 	return (arg);
 }
 
-static void	coders_actions(t_coder *coder, t_queu *queu)
+static void	coders_actions(t_queu *queu, t_coder *coder, t_config *conf)
 {
 	if (!(coder->r_dongle)->is_used || !(coder->l_dongle)->is_used)
 		queu_add_last(&queu, coder);
+	while (!is_priorty(queu, coder, conf))
+	{
+		// pthread_cond_wait();
+	}
 	/*verif if it has the priority*/
 	/*if its not the priority stay in the queu*/
 	/*verif if it can take dongle*/

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:16 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/20 01:48:53 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/20 07:38:32 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,16 @@ void	queu_remove_elem(t_queu	**queu, t_coder *coder)
 			next = q->next ;
 		}
 		q = q->next;
+	}
+}
+
+t_coder	*is_priorty(t_queu *queu, t_coder *coder, t_config *conf)
+{
+	if (!queu || !coder || !conf)
+		return (NULL);
+	if (!strcmp(conf->scheduler, "fifo"))
+	{
+		if (queu->coder == coder)
+			return (coder);
 	}
 }
