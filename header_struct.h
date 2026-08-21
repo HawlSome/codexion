@@ -6,13 +6,14 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/21 00:52:23 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/21 10:54:33 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_STRUCT_H
 # define HEADER_STRUCT_H
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
