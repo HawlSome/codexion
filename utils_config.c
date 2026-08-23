@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/21 11:26:16 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/23 18:12:46 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	*parse_config(int argc, char **argv)
 	i = 1;
 	while (i < argc - 1)
 	{
-		arg_conf[i - 1] = atoi(argv[i]);
+		arg_conf[i - 1] = ft_atol(argv[i]);
 		i ++;
 	}
 	return (arg_conf);
