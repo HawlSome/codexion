@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/21 12:56:09 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/24 09:42:01 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static t_dongle	*new_dongle(void)
 static t_coder	*new_coder(int id)
 {
 	t_coder	*coder;
+
 	coder = (t_coder *)malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
@@ -55,7 +56,7 @@ void	init_coders(int numbers, t_coder **coders)
 	int			i;
 
 	i = 1;
-	while(i <= numbers)
+	while (i <= numbers)
 	{
 		if (!*coders)
 		{

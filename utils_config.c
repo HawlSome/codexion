@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/23 18:12:46 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/24 09:26:26 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static t_config	*new_config(void)
 	conf->debug_time = 0;
 	conf->dongle_cool_down = 0;
 	conf->refactor_time = 0;
-
 	return (conf);
 }
 
@@ -58,7 +57,7 @@ static void	set_config(int argc, char **argv, t_config *conf, int *arg_conf)
 	conf->compile_time = arg_conf[2];
 	conf->debug_time = arg_conf[3];
 	conf->refactor_time = arg_conf[4];
-	conf->compile_required =  arg_conf[5];
+	conf->compile_required = arg_conf[5];
 	conf->dongle_cool_down = arg_conf[6];
 	conf->scheduler = argv[argc - 1];
 }

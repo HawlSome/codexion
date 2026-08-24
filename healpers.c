@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/23 18:14:10 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/24 09:25:16 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long	ft_atol(char *nbr)
 	long	result;
 	int		sign;
 	int		i;
-	
+
 	if (!nbr)
 		return (-1);
 	i = 0;
