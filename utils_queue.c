@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:39 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:39:58 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/24 10:10:54 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,40 @@ static void	sort_tab(t_heap_queue *queue, t_config *conf)
 
 t_heap_queue	*new_heap_q(int capacity, int size)
 {
-	t_heap_queue	*heapq;
+	t_heap_queue	*heap_q;
 
-	heapq = (t_heap_queue *)malloc(sizeof(t_heap_queue));
-	if (!heapq)
+	heap_q = (t_heap_queue *)malloc(sizeof(t_heap_queue));
+	if (!heap_q)
 		return (NULL);
-	heapq->capacity = capacity;
-	heapq->size = size;
-	heapq->coders = create_tab_coders(capacity);
+	heap_q->capacity = capacity;
+	heap_q->size = size;
+	heap_q->coders = create_tab_coders(capacity);
+	if (!heap_q->coders)
+	{
+		free(heap_q);
+		heap_q = NULL;
+	}
+	return (heap_q);
 }
 
 void	heap_push(t_heap_queue *heap_q, t_coder *coder, t_config *conf)
 {
-	if (!heap_q || !coder || !conf)
+	if (!heap_q || !coder || !conf || heap_q->size >= heap_q->capacity)
 		return ;
 	(heap_q->coders)[heap_q->size] = coder;
-	heap_q->size += 1;
+	heap_q->size ++;
 	sort_tab(heap_q, conf);
+}
+
+t_coder	*heap_pop(t_heap_queue *heap_q)
+{
+	t_coder	*coder;
+
+	if (!heap_q || !heap_q->size)
+		return (NULL);
+	coder = (heap_q->coders)[0];
+	(heap_q->coders)[0] = (heap_q->coders)[1];
+	(heap_q->coders)[1] = NULL;
+	heap_q->size --;
+	return (coder);
 }
