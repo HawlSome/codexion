@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:56:58 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/27 00:32:57 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 long			ft_atol(char *nbr);
 
 long			get_elapsed_ms(struct timeval *time);
-long			get_time_ms(struct timeval *time);
-long			get_elapsed_deadline(struct timeval *last_compile_start,
-					long burn_out_time);
 
 void			edf_sort(t_heap_queue *queue, t_config *conf);
 void			fifo_sort(t_heap_queue *queue);

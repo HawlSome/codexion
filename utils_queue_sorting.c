@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:04:49 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:40:37 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/27 00:31:36 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	edf_sort(t_heap_queue *queue, t_config *conf)
 
 	coder_1 = (queue->coders)[0];
 	coder_2 = (queue->coders)[1];
-	if (get_elapsed_deadline(&coder_1->last_compile, conf->burnout_time)
-		> get_elapsed_deadline(&coder_1->last_compile, conf->burnout_time))
+	if (coder_1->last_compile_start + conf->burnout_time
+		> coder_2->last_compile_start + conf->burnout_time)
 		swap(queue->coders);
 }
 
@@ -42,6 +42,6 @@ void	fifo_sort(t_heap_queue *queue)
 
 	coder_1 = (queue->coders)[0];
 	coder_2 = (queue->coders)[1];
-	if (get_time_ms(&coder_1->wait_entry) > get_time_ms(&coder_2->wait_entry))
+	if (coder_1->wait_entry > coder_2->wait_entry)
 		swap(queue->coders);
 }

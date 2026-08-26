@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:26:46 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/27 00:21:28 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ t_monitor	*init_monitor(t_coder	*coders, t_config *conf)
 	monitor->coders = coders;
 	monitor->conf = conf;
 	monitor->stop = 0;
-	gettimeofday(&(monitor->now), NULL);
 	pthread_mutex_init(&(monitor->lock), NULL);
 }
