@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 23:35:20 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 00:39:45 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	release_dongles(t_coder *coder, t_config *conf)
 {
 	t_arg	*r_arg;
 	t_arg	*l_arg;
+	int		l_cool_down;
+	int		r_cool_down;
 
 	if (!coder || !conf)
 		return ;
@@ -83,8 +85,12 @@ void	release_dongles(t_coder *coder, t_config *conf)
 	coder->r_dongle->is_cooling = 1;
 	pthread_cond_broadcast(&conf->general_cond);
 	pthread_mutex_unlock(&conf->general_lock);
-	pthread_create(&coder->l_dongle->thread, NULL,
-		cool_down, (void *)l_arg);
-	pthread_create(&coder->r_dongle->thread, NULL,
-		cool_down, (void *)r_arg);
+	l_cool_down = pthread_create(&coder->l_dongle->thread, NULL,
+			cool_down, (void *)l_arg);
+	r_cool_down = pthread_create(&coder->r_dongle->thread, NULL,
+			cool_down, (void *)r_arg);
+	if (l_cool_down != 0)
+		fail_safe_cool_down(l_arg);
+	if (r_cool_down != 0)
+		fail_safe_cool_down(r_arg);
 }

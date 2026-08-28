@@ -6,11 +6,25 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 23:35:25 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 00:40:35 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
+
+void	fail_safe_cool_down(void *c_arg)
+{
+	t_arg	*arg;
+
+	if (!c_arg)
+		return (NULL);
+	arg = (t_arg *)c_arg;
+	pthread_mutex_lock(&arg->conf->general_lock);
+	arg->dongle->is_cooling = 0;
+	pthread_cond_broadcast(&arg->conf->general_cond);
+	pthread_mutex_unlock(&arg->conf->general_lock);
+	free(arg);
+}
 
 void	compile(t_coder *coder, t_config *conf)
 {

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:51:52 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 21:54:38 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 23:39:24 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_priority(t_coder *coder)
 		return (0);
 	if (
 		coder->l_dongle->queue->coders[0] == coder
-		|| coder->r_dongle->queue->coders[0] == coder
+		&& coder->r_dongle->queue->coders[0] == coder
 	)
 		return (1);
 	else

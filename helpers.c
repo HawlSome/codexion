@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 22:26:39 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 00:23:56 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_arg	*new_arg(t_coder *coder, t_dongle *dongle,
 	arg->dongle = dongle;
 	arg->coders = coders;
 	arg->conf = conf;
+	return (arg);
 }
 
 long	get_time(struct timeval *time)
