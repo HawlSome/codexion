@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   healpers.c                                         :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:25:16 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 22:26:39 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,40 @@ long	ft_atol(char *nbr)
 	if (nbr[i] && !(nbr[i] >= '0' && nbr[i] <= '9'))
 		return (-1);
 	return (sign * result);
+}
+
+long	print_action(t_coder *coder, t_config *conf, char *action)
+{
+	long	now_ms;
+
+	if (!coder || !conf || !action)
+		return ;
+	now_ms = get_time(&conf->t_0);
+	printf("%li %i %s", now_ms, coder->id, action);
+	return (now_ms);
+}
+
+t_arg	*new_arg(t_coder *coder, t_dongle *dongle,
+	t_coder *coders, t_config *conf)
+{
+	t_arg	*arg;
+
+	arg = (t_arg *)malloc(sizeof(t_arg));
+	if (!arg)
+		return (NULL);
+	arg->coder = coder;
+	arg->dongle = dongle;
+	arg->coders = coders;
+	arg->conf = conf;
+}
+
+long	get_time(struct timeval *time)
+{
+	struct timeval	now;
+
+	gettimeofday(&now, NULL);
+	return (
+		(now.tv_sec - time->tv_sec) * 1000
+		+ (now.tv_usec - time->tv_usec) / 1000
+	);
 }

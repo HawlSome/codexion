@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:42:01 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 21:43:50 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ static t_coder	*last_coder(t_coder *coder)
 	return (coder);
 }
 
-static t_dongle	*new_dongle(void)
+static t_dongle	*new_dongle(t_config *conf)
 {
 	t_dongle	*dongle;
 
+	if (!conf)
+		return (NULL);
 	dongle = (t_dongle *)malloc(sizeof(t_dongle));
 	if (!dongle)
 		return (NULL);
-	dongle->cool_down_time = 0;
-	dongle->is_used = 0;
-	pthread_cond_init(&(dongle->cond), NULL);
+	dongle->is_usable = 1;
+	dongle->is_cooling = 0;
+	dongle->has_cooled = 0;
+	dongle->cool_down_time = conf->dongle_cool_down;
 	pthread_mutex_init(&(dongle->lock), NULL);
 	dongle->queue = new_heap_q(2, 0);
 	return (dongle);
@@ -43,30 +46,30 @@ static t_coder	*new_coder(int id)
 		return (NULL);
 	coder->id = id;
 	coder->compilation_done = 0;
-	coder->is_burnt_out = 0;
-	pthread_mutex_init(&(coder->lock), NULL);
 	coder->next = NULL;
 	return (coder);
 }
 
-void	init_coders(int numbers, t_coder **coders)
+void	init_coders(int numbers, t_coder **coders, t_config *conf)
 {
 	t_coder		*tail;
 	t_dongle	*dongle;
 	int			i;
 
+	if (!conf)
+		return ;
 	i = 1;
 	while (i <= numbers)
 	{
 		if (!*coders)
 		{
-			dongle = new_dongle();
+			dongle = new_dongle(conf);
 			*coders = new_coder(i);
 			(*coders)->l_dongle = dongle;
 			i ++;
 			continue ;
 		}
-		dongle = new_dongle();
+		dongle = new_dongle(conf);
 		tail = last_coder(*coders);
 		tail->r_dongle = dongle;
 		tail->next = new_coder(i);

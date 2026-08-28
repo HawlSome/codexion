@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:39 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 10:10:54 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 01:32:30 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,19 @@ void	heap_push(t_heap_queue *heap_q, t_coder *coder, t_config *conf)
 	sort_tab(heap_q, conf);
 }
 
-t_coder	*heap_pop(t_heap_queue *heap_q)
+t_coder	*heap_pop(t_heap_queue *heap_q, t_coder *coder)
 {
-	t_coder	*coder;
-
-	if (!heap_q || !heap_q->size)
+	if (!coder || !heap_q || !heap_q->size)
 		return (NULL);
-	coder = (heap_q->coders)[0];
-	(heap_q->coders)[0] = (heap_q->coders)[1];
-	(heap_q->coders)[1] = NULL;
+	if (coder == heap_q->coders[0])
+	{
+		(heap_q->coders)[0] = (heap_q->coders)[1];
+		(heap_q->coders)[1] = NULL;
+	}
+	else if (coder == heap_q->coders[1])
+		heap_q->coders[1] = NULL;
+	else
+		return (NULL);
 	heap_q->size --;
 	return (coder);
 }

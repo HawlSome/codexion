@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/24 09:26:26 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 21:25:09 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static t_config	*new_config(void)
 	conf->debug_time = 0;
 	conf->dongle_cool_down = 0;
 	conf->refactor_time = 0;
+	pthread_mutex_init(&conf->general_lock, NULL);
+	pthread_cond_init(&conf->general_cond, NULL);
 	return (conf);
 }
 

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/27 00:34:06 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 21:43:35 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct s_dongle	t_dongle;
 
 typedef struct s_config
 {
-	struct timeval	general_start;
+	struct timeval	t_0;
+	pthread_mutex_t	general_lock;
+	pthread_cond_t	general_cond;
 	int				coders_count;
 	int				burnout_time;
 	int				compile_time;
@@ -36,13 +38,11 @@ typedef struct s_config
 typedef struct s_coder
 {
 	pthread_t		thread;
-	pthread_mutex_t	lock;
 	int				id;
 	int				compilation_done;
-	int				is_burnt_out;
 	t_dongle		*l_dongle;
 	t_dongle		*r_dongle;
-	long			last_compile;
+	long			last_compile_start;
 	long			wait_entry;
 	struct s_coder	*next;
 }		t_coder;
@@ -57,8 +57,10 @@ typedef struct s_heap_queue
 typedef struct s_dongle
 {
 	pthread_mutex_t	lock;
-	pthread_cond_t	cond;
-	int				is_used;
+	pthread_t		thread;
+	int				is_usable;
+	int				is_cooling;
+	int				has_cooled;
 	int				cool_down_time;
 	t_heap_queue	*queue;
 }		t_dongle;
@@ -75,7 +77,9 @@ typedef struct s_monitor
 typedef struct s_arg
 {
 	t_coder		*coder;
-	t_monitor	*monitor;
+	t_dongle	*dongle;
+	t_coder		*coders;
+	t_config	*conf;
 }		t_arg;
 
 #endif
