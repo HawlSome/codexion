@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 00:23:56 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 01:09:06 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ long	print_action(t_coder *coder, t_config *conf, char *action)
 	long	now_ms;
 
 	if (!coder || !conf || !action)
-		return ;
+		return (0);
 	now_ms = get_time(&conf->t_0);
 	printf("%li %i %s", now_ms, coder->id, action);
 	return (now_ms);

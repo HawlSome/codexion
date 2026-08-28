@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 00:40:35 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 01:10:38 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	compile(t_coder *coder, t_config *conf)
 	coder->last_compile_start = compile_start;
 	usleep(conf->compile_time);
 	coder->compilation_done ++;
-	release_dongle(coder);
+	release_dongles(coder, conf);
 }
 
 void	debug(t_coder *coder, t_config *conf)
