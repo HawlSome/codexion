@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 00:39:45 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 23:04:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*cool_down(void *c_arg)
 	return (NULL);
 }
 
-void	request_dognles(t_coder *coder, t_config *conf)
+void	request_dongles(t_coder *coder, t_config *conf)
 {
 	if (!coder || !conf)
 		return ;

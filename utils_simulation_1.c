@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 01:10:38 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 23:03:57 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	fail_safe_cool_down(void *c_arg)
 	t_arg	*arg;
 
 	if (!c_arg)
-		return (NULL);
+		return ;
 	arg = (t_arg *)c_arg;
 	pthread_mutex_lock(&arg->conf->general_lock);
 	arg->dongle->is_cooling = 0;
@@ -44,7 +44,7 @@ void	compile(t_coder *coder, t_config *conf)
 	release_dongles(coder, conf);
 }
 
-void	debug(t_coder *coder, t_config *conf)
+void	post_compile(t_coder *coder, t_config *conf)
 {
 	if (!coder || !conf)
 		return ;

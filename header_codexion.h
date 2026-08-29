@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 00:40:40 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/29 23:04:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_monitor		*init_monitor(t_coder	*coders, t_config *conf);
 
 int				is_priority(t_coder *coder);
 int				is_donlges_available(t_coder *coder);
-void			request_dognles(t_coder *coder, t_config *conf);
+void			request_dongles(t_coder *coder, t_config *conf);
 void			fail_safe_cool_down(void *c_arg);
 void			take_dongles(t_coder *coder, t_config *conf);
 void			release_dongles(t_coder *coder, t_config *conf);
