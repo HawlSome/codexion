@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verifier.c                                         :+:      :+:    :+:   */
+/*   utils_verifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 02:59:10 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 16:37:45 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/31 00:08:20 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static long	coders_count(t_coder *coders)
 
 static int	is_valid_dongles(t_dongle *l_dongle, t_dongle *r_dongle)
 {
-	if (!l_dongle || !r_dongle)
+	if (!l_dongle && !r_dongle)
 		return (0);
-	if (!l_dongle->queue || !r_dongle->queue)
+	if (!l_dongle->queue && !r_dongle->queue)
 		return (0);
-	if (!l_dongle->queue->coders || !r_dongle->queue->coders)
+	if (!l_dongle->queue->coders && !r_dongle->queue->coders)
 		return (0);
 	return (1);
 }

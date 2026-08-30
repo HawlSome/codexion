@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 21:18:21 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 23:12:55 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	compile(t_coder *coder, t_config *conf)
 {
-	long	compile_start;
-
 	if (!coder || !conf)
 		return ;
 	pthread_mutex_lock(&conf->general_lock);
@@ -29,10 +27,10 @@ static void	compile(t_coder *coder, t_config *conf)
 	}
 	take_dongles(coder, conf);
 	pthread_mutex_unlock(&conf->general_lock);
-	compile_start = print_action(coder, conf, "is compiling");
 	pthread_mutex_lock(&conf->action_lock);
-	coder->last_compile_start = compile_start;
+	coder->last_compile_start = get_time(conf);
 	pthread_mutex_unlock(&conf->action_lock);
+	print_action(coder, conf, "is compiling");
 	usleep(conf->compile_time * 1000);
 	pthread_mutex_lock(&conf->action_lock);
 	coder->compilation_done++;

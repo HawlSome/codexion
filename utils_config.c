@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 21:24:20 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 23:59:52 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	init_config(int argc, char **argv, t_config **conf)
 
 	*conf = NULL;
 	arg_conf = parse_config(argc, argv);
-	if (!arg_conf || is_invalid_arg(arg_conf)
+	if (!arg_conf || is_invalid_arg(arg_conf) || !arg_conf[0]
 		|| (strcmp(argv[argc - 1], "edf") && strcmp(argv[argc - 1], "fifo")
 			&& strcmp(argv[argc - 1], "EDF") && strcmp(argv[argc - 1], "FIFO"))
 	)
