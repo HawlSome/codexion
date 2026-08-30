@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 21:25:09 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 02:21:02 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_config	*new_config(void)
 	conf = (t_config *)malloc(sizeof(t_config));
 	if (!conf)
 		return (NULL);
+	conf->stop = 0;
 	conf->burnout_time = 0;
 	conf->coders_count = 0;
 	conf->compile_required = 0;
@@ -27,6 +28,8 @@ static t_config	*new_config(void)
 	conf->dongle_cool_down = 0;
 	conf->refactor_time = 0;
 	pthread_mutex_init(&conf->general_lock, NULL);
+	pthread_mutex_init(&conf->stop_lock, NULL);
+	pthread_mutex_init(&conf->action_lock, NULL);
 	pthread_cond_init(&conf->general_cond, NULL);
 	return (conf);
 }

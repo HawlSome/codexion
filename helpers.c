@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 01:09:06 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 01:58:35 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ long	ft_atol(char *nbr)
 	return (sign * result);
 }
 
-long	print_action(t_coder *coder, t_config *conf, char *action)
-{
-	long	now_ms;
-
-	if (!coder || !conf || !action)
-		return (0);
-	now_ms = get_time(&conf->t_0);
-	printf("%li %i %s", now_ms, coder->id, action);
-	return (now_ms);
-}
-
 t_arg	*new_arg(t_coder *coder, t_dongle *dongle,
 	t_coder *coders, t_config *conf)
 {
@@ -67,13 +56,28 @@ t_arg	*new_arg(t_coder *coder, t_dongle *dongle,
 	return (arg);
 }
 
-long	get_time(struct timeval *time)
+long	get_time(t_config *conf)
 {
+	struct timeval	*time;
 	struct timeval	now;
 
+	if (!conf)
+		return (0);
 	gettimeofday(&now, NULL);
+	time = &conf->t_0;
 	return (
 		(now.tv_sec - time->tv_sec) * 1000
 		+ (now.tv_usec - time->tv_usec) / 1000
 	);
+}
+
+long	print_action(t_coder *coder, t_config *conf, char *action)
+{
+	long	now_ms;
+
+	if (!coder || !conf || !action)
+		return (0);
+	now_ms = get_time(conf);
+	printf("%li %i %s", now_ms, coder->id, action);
+	return (now_ms);
 }

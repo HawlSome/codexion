@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 21:43:35 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 02:13:53 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ typedef struct s_config
 {
 	struct timeval	t_0;
 	pthread_mutex_t	general_lock;
+	pthread_mutex_t	stop_lock;
+	pthread_mutex_t	action_lock;
 	pthread_cond_t	general_cond;
+	int				stop;
 	int				coders_count;
 	int				burnout_time;
 	int				compile_time;
@@ -56,7 +59,6 @@ typedef struct s_heap_queue
 
 typedef struct s_dongle
 {
-	pthread_mutex_t	lock;
 	pthread_t		thread;
 	int				is_usable;
 	int				is_cooling;
@@ -64,15 +66,6 @@ typedef struct s_dongle
 	int				cool_down_time;
 	t_heap_queue	*queue;
 }		t_dongle;
-
-typedef struct s_monitor
-{
-	pthread_t		thread;
-	pthread_mutex_t	lock;
-	int				stop;
-	t_coder			*coders;
-	t_config		*conf;
-}		t_monitor;
 
 typedef struct s_arg
 {

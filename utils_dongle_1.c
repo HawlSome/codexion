@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_simulation.c                                 :+:      :+:    :+:   */
+/*   utils_simulation_0.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/29 23:04:25 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 01:05:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
 
-static void	join_cool_down(t_dongle *dongle)
+void	join_cool_down(t_dongle *dongle)
 {
 	if (!dongle)
 		return ;

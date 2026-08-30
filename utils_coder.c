@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 21:43:50 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 02:14:07 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static t_dongle	*new_dongle(t_config *conf)
 	dongle->is_cooling = 0;
 	dongle->has_cooled = 0;
 	dongle->cool_down_time = conf->dongle_cool_down;
-	pthread_mutex_init(&(dongle->lock), NULL);
 	dongle->queue = new_heap_q(2, 0);
 	return (dongle);
 }
