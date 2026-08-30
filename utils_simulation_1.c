@@ -5,86 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 13:07:36 by varandri         ###   ########.fr       */
+/*   Created: 2026/08/30 15:13:35 by varandri          #+#    #+#             */
+/*   Updated: 2026/08/30 15:51:01 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
 
-static void	compile(t_coder *coder, t_config *conf)
+void	end_coders_routines(t_coder *coder)
 {
-	long	compile_start;
-
-	if (!coder || !conf)
-		return ;
-	pthread_mutex_lock(&conf->general_lock);
-	while (!(is_priority(coder) && is_donlges_available(coder)))
-		pthread_cond_wait(&conf->general_cond, &conf->general_lock);
-	take_dongles(coder, conf);
-	pthread_mutex_unlock(&conf->general_lock);
-	compile_start = print_action(coder, conf, "is compiling");
-	pthread_mutex_lock(&conf->action_lock);
-	coder->last_compile_start = compile_start;
-	pthread_mutex_unlock(&conf->action_lock);
-	usleep(conf->compile_time);
-	coder->compilation_done ++;
-	release_dongles(coder, conf);
-}
-
-static void	debug(t_coder *coder, t_config *conf)
-{
-	if (!coder || !conf)
-		return ;
-	print_action(coder, conf, "is debugging");
-	usleep(conf->debug_time);
-}
-
-static void	refactor(t_coder *coder, t_config *conf)
-{
-	if (!coder || !conf)
-		return ;
-	print_action(coder, conf, "is refactoring");
-	usleep(conf->refactor_time);
-}
-
-void	*routine(void *r_arg)
-{
-	t_arg	*arg;
-
-	if (!r_arg)
-		return (NULL);
-	arg = (t_arg *)r_arg;
-	while (!is_stop(arg->conf)
-		&& arg->coder->compilation_done < arg->conf->compile_required)
-	{
-		request_dongles(arg->coder, arg->conf);
-		compile(arg->coder, arg->conf);
-		debug(arg->coder, arg->conf);
-		refactor(arg->coder, arg->conf);
-	}
-	join_cool_down(arg->coder->l_dongle);
-	join_cool_down(arg->coder->r_dongle);
-	free(arg);
-	return (NULL);
-}
-
-void	start_coders_routines(t_coder *coders, t_config *conf)
-{
-	t_arg	*r_arg;
-	t_coder	*coder;
-
-	if (!coders || !conf)
-		return ;
-	coder = coders;
 	while (coder)
 	{
-		r_arg = new_arg(coder, NULL, NULL, conf);
-		if (pthread_create(&coder->thread, NULL, routine, r_arg) != 0)
-		{
-			free(r_arg);
-			return ;
-		}
+		pthread_join(coder->thread, NULL);
 		coder = coder->next;
 	}
 }

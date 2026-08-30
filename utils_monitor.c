@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 13:07:27 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 15:38:17 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	is_burnt_out(t_coder *coder, t_config *conf)
 	return (burnt_out);
 }
 
-static void	set_stop(t_config *conf)
+void	set_stop(t_config *conf)
 {
 	if (!conf)
 		return ;

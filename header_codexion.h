@@ -6,13 +6,15 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 14:24:34 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:22:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_CODEXION_H
 # define HEADER_CODEXION_H
 # include "header_struct.h"
+
+void			program_clean(t_coder *coder, t_config *conf);
 
 long			ft_atol(char *nbr);
 t_arg			*new_arg(t_coder *coder, t_dongle *dongle,
@@ -39,8 +41,10 @@ void			take_dongles(t_coder *coder, t_config *conf);
 void			release_dongles(t_coder *coder, t_config *conf);
 
 int				is_stop(t_config *conf);
+void			set_stop(t_config *conf);
 void			start_monitoring(pthread_t *monitor, t_config *conf,
 					t_coder *coders);
 void			start_coders_routines(t_coder *coders, t_config *conf);
+void			end_coders_routines(t_coder *coder);
 
 #endif

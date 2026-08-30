@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 13:07:24 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:26:20 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*cool_down(void *c_arg)
 	if (!c_arg)
 		return (NULL);
 	arg = (t_arg *)c_arg;
-	usleep(arg->dongle->cool_down_time);
+	usleep(arg->dongle->cool_down_time * 1000);
 	pthread_mutex_lock(&arg->conf->general_lock);
 	arg->dongle->has_cooled = 1;
 	arg->dongle->is_cooling = 0;
@@ -42,7 +42,7 @@ void	*cool_down(void *c_arg)
 
 void	request_dongles(t_coder *coder, t_config *conf)
 {
-	if (!coder || !conf)
+	if (!coder || !conf || is_stop(conf))
 		return ;
 	coder->wait_entry = get_time(conf);
 	pthread_mutex_lock(&conf->general_lock);
@@ -90,7 +90,7 @@ void	release_dongles(t_coder *coder, t_config *conf)
 	r_cool_down = pthread_create(&coder->r_dongle->thread, NULL,
 			cool_down, (void *)r_arg);
 	if (l_cool_down != 0)
-		fail_safe_cool_down(l_arg);
+		fail_safe_cool_down((void *)l_arg);
 	if (r_cool_down != 0)
-		fail_safe_cool_down(r_arg);
+		fail_safe_cool_down((void *)r_arg);
 }
