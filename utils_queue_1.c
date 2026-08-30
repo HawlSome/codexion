@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:39 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 15:27:15 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:32:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,8 @@ t_coder	*heap_pop(t_heap_queue *heap_q, t_coder *coder)
 {
 	if (!coder || !heap_q || !heap_q->size)
 		return (NULL);
-	if (coder == heap_q->coders[0])
-	{
-		(heap_q->coders)[0] = (heap_q->coders)[1];
-		(heap_q->coders)[1] = NULL;
-	}
-	else if (coder == heap_q->coders[1])
-		heap_q->coders[1] = NULL;
-	else
-		return (NULL);
+	(heap_q->coders)[0] = (heap_q->coders)[1];
+	(heap_q->coders)[1] = NULL;
 	heap_q->size --;
 	return (coder);
 }

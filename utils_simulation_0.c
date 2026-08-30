@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 17:35:29 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 21:18:21 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@ static void	compile(t_coder *coder, t_config *conf)
 {
 	long	compile_start;
 
-	if (!coder || !conf || is_stop(conf))
+	if (!coder || !conf)
 		return ;
 	pthread_mutex_lock(&conf->general_lock);
-	while (!(is_priority(coder) && is_donlges_available(coder)))
+	while (!is_stop(conf)
+		&& !(is_priority(coder) && is_donlges_available(coder)))
 		pthread_cond_wait(&conf->general_cond, &conf->general_lock);
+	if (is_stop(conf))
+	{
+		pthread_mutex_unlock(&conf->general_lock);
+		return ;
+	}
 	take_dongles(coder, conf);
 	pthread_mutex_unlock(&conf->general_lock);
 	compile_start = print_action(coder, conf, "is compiling");
@@ -28,7 +34,9 @@ static void	compile(t_coder *coder, t_config *conf)
 	coder->last_compile_start = compile_start;
 	pthread_mutex_unlock(&conf->action_lock);
 	usleep(conf->compile_time * 1000);
-	coder->compilation_done ++;
+	pthread_mutex_lock(&conf->action_lock);
+	coder->compilation_done++;
+	pthread_mutex_unlock(&conf->action_lock);
 	release_dongles(coder, conf);
 }
 
@@ -55,6 +63,8 @@ void	*routine(void *r_arg)
 	if (!r_arg)
 		return (NULL);
 	arg = (t_arg *)r_arg;
+	if (arg->coder->id % 2 == 0)
+		usleep(1000);
 	while (!is_stop(arg->conf)
 		&& arg->coder->compilation_done < arg->conf->compile_required)
 	{
@@ -63,8 +73,6 @@ void	*routine(void *r_arg)
 		debug(arg->coder, arg->conf);
 		refactor(arg->coder, arg->conf);
 	}
-	join_cool_down(arg->coder->l_dongle);
-	join_cool_down(arg->coder->r_dongle);
 	free(arg);
 	return (NULL);
 }

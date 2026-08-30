@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 16:22:25 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:57:54 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void			request_dongles(t_coder *coder, t_config *conf);
 void			fail_safe_cool_down(void *c_arg);
 void			join_cool_down(t_dongle *dongle);
 void			take_dongles(t_coder *coder, t_config *conf);
+void			init_cooldown(t_coder *coder, t_config *conf);
 void			release_dongles(t_coder *coder, t_config *conf);
 
 int				is_stop(t_config *conf);

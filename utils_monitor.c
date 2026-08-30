@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 15:38:17 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:13:56 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ void	set_stop(t_config *conf)
 	pthread_mutex_lock(&conf->stop_lock);
 	conf->stop = 1;
 	pthread_mutex_unlock(&conf->stop_lock);
+	pthread_mutex_lock(&conf->general_lock);
+	pthread_cond_broadcast(&conf->general_cond);
+	pthread_mutex_unlock(&conf->general_lock);
 }
 
 int	is_stop(t_config *conf)

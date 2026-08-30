@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 14:50:38 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 21:15:18 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_dongle	*new_dongle(t_config *conf)
 	dongle->is_usable = 1;
 	dongle->is_cooling = 0;
 	dongle->has_cooled = 0;
+	dongle->thread_created = 0;
 	dongle->cool_down_time = conf->dongle_cool_down;
 	dongle->queue = new_heap_q(2, 0);
 	return (dongle);
@@ -46,6 +47,7 @@ static t_coder	*new_coder(int id)
 	coder->id = id;
 	coder->compilation_done = 0;
 	coder->last_compile_start = 0;
+	coder->wait_entry = 0;
 	coder->next = NULL;
 	return (coder);
 }

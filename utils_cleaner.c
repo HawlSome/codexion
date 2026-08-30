@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaners.c                                         :+:      :+:    :+:   */
+/*   utils_cleaner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 02:59:13 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 16:37:53 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 20:00:05 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	clean_dongles(t_dongle *l_dongle)
 	if (!l_dongle)
 		return ;
 	clean_queue(l_dongle->queue);
+	if (l_dongle->thread_created)
+		pthread_join(l_dongle->thread, NULL);
 	free(l_dongle);
 }
 

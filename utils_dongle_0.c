@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:51:52 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 13:07:46 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 21:12:32 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,44 @@ void	fail_safe_cool_down(void *c_arg)
 	pthread_cond_broadcast(&arg->conf->general_cond);
 	pthread_mutex_unlock(&arg->conf->general_lock);
 	free(arg);
+}
+
+void	*cool_down(void *c_arg)
+{
+	t_arg	*arg;
+
+	if (!c_arg)
+		return (NULL);
+	arg = (t_arg *)c_arg;
+	usleep(arg->dongle->cool_down_time * 1000);
+	pthread_mutex_lock(&arg->conf->general_lock);
+	arg->dongle->has_cooled = 1;
+	arg->dongle->is_cooling = 0;
+	pthread_cond_broadcast(&arg->conf->general_cond);
+	pthread_mutex_unlock(&arg->conf->general_lock);
+	free(arg);
+	return (NULL);
+}
+
+void	init_cooldown(t_coder *coder, t_config *conf)
+{
+	t_arg	*r_arg;
+	t_arg	*l_arg;
+	int		l_cool_down;
+	int		r_cool_down;
+
+	l_arg = new_arg(coder, coder->l_dongle, NULL, conf);
+	r_arg = new_arg(coder, coder->r_dongle, NULL, conf);
+	l_cool_down = pthread_create(&coder->l_dongle->thread, NULL,
+			cool_down, (void *)l_arg);
+	r_cool_down = pthread_create(&coder->r_dongle->thread, NULL,
+			cool_down, (void *)r_arg);
+	if (!l_cool_down)
+		coder->l_dongle->thread_created = 1;
+	if (!r_cool_down)
+		coder->r_dongle->thread_created = 1;
+	if (l_cool_down != 0)
+		fail_safe_cool_down((void *)l_arg);
+	if (r_cool_down != 0)
+		fail_safe_cool_down((void *)r_arg);
 }

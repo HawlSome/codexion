@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 11:54:30 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:50:12 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_heap_queue
 typedef struct s_dongle
 {
 	pthread_t		thread;
+	int				thread_created;
 	int				is_usable;
 	int				is_cooling;
 	int				has_cooled;
