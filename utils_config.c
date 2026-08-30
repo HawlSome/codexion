@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 20:04:46 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 21:24:20 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static t_config	*new_config(void)
 	pthread_mutex_init(&conf->stop_lock, NULL);
 	pthread_mutex_init(&conf->action_lock, NULL);
 	pthread_cond_init(&conf->general_cond, NULL);
+	gettimeofday(&conf->t_0, NULL);
 	return (conf);
 }
 
