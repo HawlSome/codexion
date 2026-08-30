@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_simulation_0.c                               :+:      :+:    :+:   */
+/*   utils_dongle_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 01:05:25 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 13:07:24 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	request_dongles(t_coder *coder, t_config *conf)
 {
 	if (!coder || !conf)
 		return ;
-	coder->wait_entry = get_time(&conf->t_0);
+	coder->wait_entry = get_time(conf);
 	pthread_mutex_lock(&conf->general_lock);
 	heap_push(coder->l_dongle->queue, coder, conf);
 	heap_push(coder->r_dongle->queue, coder, conf);

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 03:35:23 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 13:07:27 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	*monitoring(void *m_arg)
 		usleep(1000);
 	}
 	free(arg);
+	return (NULL);
 }
 
 void	start_monitoring(pthread_t *monitor, t_config *conf, t_coder *coders)

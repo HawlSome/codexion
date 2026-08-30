@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 03:21:33 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 13:07:36 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	*routine(void *r_arg)
 	join_cool_down(arg->coder->l_dongle);
 	join_cool_down(arg->coder->r_dongle);
 	free(arg);
+	return (NULL);
 }
 
 void	start_coders_routines(t_coder *coders, t_config *conf)

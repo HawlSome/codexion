@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 03:21:13 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 14:24:34 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void			heap_push(t_heap_queue *heap_q, t_coder *coder, t_config *conf);
 t_coder			*heap_pop(t_heap_queue *heap_q, t_coder *coder);
 
 void			init_config(int argc, char **argv, t_config **conf);
-void			init_coders(int numbers, t_coder **coders, t_config *conf);
+void			init_coders(t_coder **coders, t_config *conf);
+int				is_valid_coders(t_coder *coders, t_config *conf);
 
 int				is_priority(t_coder *coder);
 int				is_donlges_available(t_coder *coder);
@@ -36,10 +37,6 @@ void			fail_safe_cool_down(void *c_arg);
 void			join_cool_down(t_dongle *dongle);
 void			take_dongles(t_coder *coder, t_config *conf);
 void			release_dongles(t_coder *coder, t_config *conf);
-
-void			compile(t_coder *coder, t_config *conf);
-void			debug(t_coder *coder, t_config *conf);
-void			refactor(t_coder *coder, t_config *conf);
 
 int				is_stop(t_config *conf);
 void			start_monitoring(pthread_t *monitor, t_config *conf,

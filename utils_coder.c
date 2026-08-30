@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 02:14:07 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 14:50:38 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,22 @@ static t_coder	*new_coder(int id)
 		return (NULL);
 	coder->id = id;
 	coder->compilation_done = 0;
+	coder->last_compile_start = 0;
 	coder->next = NULL;
 	return (coder);
 }
 
-void	init_coders(int numbers, t_coder **coders, t_config *conf)
+static void	tail_dongle(t_coder *coder)
+{
+	t_coder	*tail;
+
+	if (!coder)
+		return ;
+	tail = last_coder(coder);
+	tail->r_dongle = coder->l_dongle;
+}
+
+void	init_coders(t_coder **coders, t_config *conf)
 {
 	t_coder		*tail;
 	t_dongle	*dongle;
@@ -58,7 +69,7 @@ void	init_coders(int numbers, t_coder **coders, t_config *conf)
 	if (!conf)
 		return ;
 	i = 1;
-	while (i <= numbers)
+	while (i <= conf->coders_count)
 	{
 		if (!*coders)
 		{
@@ -75,5 +86,5 @@ void	init_coders(int numbers, t_coder **coders, t_config *conf)
 		(tail->next)->l_dongle = dongle;
 		i ++;
 	}
-	(tail->next)->r_dongle = (*coders)->l_dongle;
+	tail_dongle(*coders);
 }

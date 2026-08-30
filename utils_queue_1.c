@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_queue.c                                      :+:      :+:    :+:   */
+/*   utils_queue_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:39 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/28 01:32:30 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 14:10:43 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	sort_tab(t_heap_queue *queue, t_config *conf)
 	if (!queue || !conf->scheduler || queue->size != queue->capacity
 		|| !queue->coders)
 		return ;
-	if (!strcmp(conf->scheduler, "edf"))
+	if (!strcmp(conf->scheduler, "edf") || !strcmp(conf->scheduler, "EDF"))
 		edf_sort(queue, conf);
-	if (!strcmp(conf->scheduler, "fifo"))
+	if (!strcmp(conf->scheduler, "fifo") || !strcmp(conf->scheduler, "FIFO"))
 		fifo_sort(queue);
 }
 

@@ -6,8 +6,47 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 02:59:10 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 02:59:45 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 14:56:46 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
+
+static long	coders_count(t_coder *coders)
+{
+	long	count;
+
+	count = 0;
+	while (coders)
+	{
+		count ++;
+		coders = coders->next;
+	}
+	return (count);
+}
+
+static int	is_valid_dongles(t_dongle *l_dongle, t_dongle *r_dongle)
+{
+	if (!l_dongle || !r_dongle)
+		return (0);
+	if (!l_dongle->queue || !r_dongle->queue)
+		return (0);
+	if (!l_dongle->queue->coders || !r_dongle->queue->coders)
+		return (0);
+	return (1);
+}
+
+int	is_valid_coders(t_coder *coders, t_config *conf)
+{
+	if (!coders || !conf)
+		return (0);
+	if (conf->coders_count != coders_count(coders))
+		return (0);
+	while (coders)
+	{
+		if (!is_valid_dongles(coders->l_dongle, coders->r_dongle))
+			return (0);
+		coders = coders->next;
+	}
+	return (1);
+}

@@ -6,11 +6,27 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 02:21:02 by varandri         ###   ########.fr       */
+/*   Updated: 2026/08/30 14:39:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_codexion.h"
+
+static int	is_invalid_arg(long *arg_conf)
+{
+	int	i;
+
+	if (!arg_conf)
+		return (1);
+	i = 0;
+	while (i < 7)
+	{
+		if (arg_conf[i] < 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static t_config	*new_config(void)
 {
@@ -34,14 +50,14 @@ static t_config	*new_config(void)
 	return (conf);
 }
 
-static int	*parse_config(int argc, char **argv)
+static long	*parse_config(int argc, char **argv)
 {
-	int	*arg_conf;
-	int	i;
+	long	*arg_conf;
+	int		i;
 
 	if (argc != 9 || !*argv || !argv)
 		return (NULL);
-	arg_conf = (int *)malloc((argc - 2 * sizeof(int)));
+	arg_conf = (long *)malloc(((argc - 2) * sizeof(long)));
 	if (!arg_conf)
 		return (NULL);
 	i = 1;
@@ -53,7 +69,7 @@ static int	*parse_config(int argc, char **argv)
 	return (arg_conf);
 }
 
-static void	set_config(int argc, char **argv, t_config *conf, int *arg_conf)
+static void	set_config(int argc, char **argv, t_config *conf, long *arg_conf)
 {
 	if (!conf || !arg_conf)
 		return ;
@@ -69,12 +85,19 @@ static void	set_config(int argc, char **argv, t_config *conf, int *arg_conf)
 
 void	init_config(int argc, char **argv, t_config **conf)
 {
-	int		*arg_conf;
+	long		*arg_conf;
 
 	*conf = NULL;
 	arg_conf = parse_config(argc, argv);
-	if (!arg_conf)
+	if (!arg_conf || is_invalid_arg(arg_conf)
+		|| (strcmp(argv[argc - 1], "edf") && strcmp(argv[argc - 1], "fifo")
+			&& strcmp(argv[argc - 1], "EDF") && strcmp(argv[argc - 1], "FIFO"))
+	)
+	{
+		printf("Error: Invalid arguments format.");
+		free(arg_conf);
 		return ;
+	}
 	*conf = new_config();
 	set_config(argc, argv, *conf, arg_conf);
 	free(arg_conf);
