@@ -282,7 +282,7 @@ codexion/
 - POSIX man pages: `pthread_create(3)`, `pthread_mutex_lock(3)`,
   `pthread_cond_wait(3)`, `pthread_cond_broadcast(3)`, `gettimeofday(2)`,
   `usleep(3)`
-- [GeerksForGeek](https://www.geeksforgeeks.org/c/multithreading-in-c/): `Practical Documentatio`
+- [GeerksForGeek](https://www.geeksforgeeks.org/c/multithreading-in-c/): `Practical Documentation`
 	and `examples of the usage of threads` followed by `brief explanations`.
 - [Youtube](https://www.youtube.com/watch?v=uA8X5zNOGw8&list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM): `Series of tutorial` about threads in C POSIX.
 
