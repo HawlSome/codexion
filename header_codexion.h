@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 19:57:54 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/01 22:07:25 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_arg			*new_arg(t_coder *coder, t_dongle *dongle,
 					t_coder *coders, t_config *conf);
 long			get_time(t_config *conf);
 long			print_action(t_coder *coder, t_config *conf, char *action);
+void			msleep(t_config *conf, long time);
 
 void			edf_sort(t_heap_queue *queue, t_config *conf);
 void			fifo_sort(t_heap_queue *queue);

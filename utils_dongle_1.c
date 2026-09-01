@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/31 00:10:06 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/01 21:38:08 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	take_dongles(t_coder *coder, t_config *conf)
 	join_cool_down(coder->r_dongle);
 	coder->r_dongle->is_usable = 0;
 	heap_pop(coder->r_dongle->queue, coder);
-	pthread_cond_broadcast(&conf->general_cond);
 }
 
 void	release_dongles(t_coder *coder, t_config *conf)
@@ -62,7 +61,6 @@ void	release_dongles(t_coder *coder, t_config *conf)
 	coder->l_dongle->is_cooling = 1;
 	coder->r_dongle->is_usable = 1;
 	coder->r_dongle->is_cooling = 1;
-	pthread_cond_broadcast(&conf->general_cond);
-	pthread_mutex_unlock(&conf->general_lock);
 	init_cooldown(coder, conf);
+	pthread_mutex_unlock(&conf->general_lock);
 }

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 23:22:04 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/01 22:06:34 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,15 @@ long	print_action(t_coder *coder, t_config *conf, char *action)
 	printf("%li %i %s\n", now_ms, coder->id, action);
 	pthread_mutex_unlock(&conf->action_lock);
 	return (now_ms);
+}
+
+void	msleep(t_config *conf, long time)
+{
+	if (!conf)
+		return ;
+	while (time && !is_stop(conf))
+	{
+		usleep(1000);
+		time --;
+	}
 }

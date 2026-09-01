@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:51:52 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 21:12:32 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/01 21:49:03 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	*cool_down(void *c_arg)
 	if (!c_arg)
 		return (NULL);
 	arg = (t_arg *)c_arg;
-	usleep(arg->dongle->cool_down_time * 1000);
+	msleep(arg->conf, arg->dongle->cool_down_time);
 	pthread_mutex_lock(&arg->conf->general_lock);
 	arg->dongle->has_cooled = 1;
 	arg->dongle->is_cooling = 0;

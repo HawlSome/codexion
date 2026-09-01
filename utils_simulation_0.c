@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 23:12:55 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/01 21:50:17 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	compile(t_coder *coder, t_config *conf)
 	coder->last_compile_start = get_time(conf);
 	pthread_mutex_unlock(&conf->action_lock);
 	print_action(coder, conf, "is compiling");
-	usleep(conf->compile_time * 1000);
+	msleep(conf, conf->compile_time);
 	pthread_mutex_lock(&conf->action_lock);
 	coder->compilation_done++;
 	pthread_mutex_unlock(&conf->action_lock);
@@ -43,7 +43,7 @@ static void	debug(t_coder *coder, t_config *conf)
 	if (!coder || !conf || is_stop(conf))
 		return ;
 	print_action(coder, conf, "is debugging");
-	usleep(conf->debug_time * 1000);
+	msleep(conf, conf->debug_time);
 }
 
 static void	refactor(t_coder *coder, t_config *conf)
@@ -51,7 +51,7 @@ static void	refactor(t_coder *coder, t_config *conf)
 	if (!coder || !conf || is_stop(conf))
 		return ;
 	print_action(coder, conf, "is refactoring");
-	usleep(conf->refactor_time * 1000);
+	msleep(conf, conf->refactor_time);
 }
 
 void	*routine(void *r_arg)
