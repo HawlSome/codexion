@@ -6,14 +6,14 @@
 #    By: varandri <varandri@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/30 16:45:00 by varandri          #+#    #+#              #
-#    Updated: 2026/08/30 19:33:59 by varandri         ###   ########.fr        #
+#    Updated: 2026/09/03 00:10:54 by varandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = codexion
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 LDFLAGS = -pthread
 
 SRC = main.c helpers.c utils_config.c utils_coder.c utils_cleaner.c \

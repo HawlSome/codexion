@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/02 17:29:12 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/03 00:29:13 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	compile(t_coder *coder, t_config *conf)
 
 static void	debug(t_coder *coder, t_config *conf)
 {
-	if (!coder || !conf || is_stop(conf))
+	if (!coder || !conf || is_stop(conf) || !should_continue(coder, conf))
 		return ;
 	print_action(coder, conf, "is debugging");
 	msleep(conf, conf->debug_time);
@@ -48,7 +48,7 @@ static void	debug(t_coder *coder, t_config *conf)
 
 static void	refactor(t_coder *coder, t_config *conf)
 {
-	if (!coder || !conf || is_stop(conf))
+	if (!coder || !conf || is_stop(conf) || !should_continue(coder, conf))
 		return ;
 	print_action(coder, conf, "is refactoring");
 	msleep(conf, conf->refactor_time);

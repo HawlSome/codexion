@@ -12,7 +12,7 @@ variables and custom priority queues, under one of two arbitration policies:
 `fifo` or `edf` (Earliest Deadline First).
 
 Think *Dining Philosophers* — except the philosophers are coders, the forks are USB
-dongles, and starvation is measured in milliseconds.
+dongles, and burnout is measured in milliseconds.
 
 ## Description
 
@@ -134,7 +134,7 @@ Because deadlock requires all four conditions at once, eliminating hold-and-wait
 (and making circular wait structurally impossible) is sufficient: the simulation
 is deadlock-free by construction.
 
-### Starvation prevention (liveness)
+### Burnout prevention (liveness)
 
 - **`fifo`**: queue positions are fixed at request time by the `wait_entry`
   timestamp. The coder with the globally earliest `wait_entry` is necessarily at
@@ -146,7 +146,7 @@ is deadlock-free by construction.
   pushes its own deadline further away. The longer a coder waits, the more urgent
   its deadline becomes relative to the field — it eventually owns the earliest
   deadline, sits at the head of both queues, and is served. Ties break by arrival
-  order. Provided the parameters are feasible, no coder starves.
+  order. Provided the parameters are feasible, no coder burns out.
 
 ### Cooldown handling
 
