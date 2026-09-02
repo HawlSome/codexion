@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 19:50:12 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/02 17:29:12 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_coder
 	int				compilation_done;
 	t_dongle		*l_dongle;
 	t_dongle		*r_dongle;
-	long			last_compile_start;
+	long			compiled_at;
 	long			wait_entry;
 	struct s_coder	*next;
 }		t_coder;

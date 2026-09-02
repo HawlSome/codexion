@@ -40,7 +40,7 @@ the `scheduler` argument:
 | Scheduler | Arbitration |
 |-----------|-------------|
 | `fifo` | First In, First Out — earliest request (`wait_entry` timestamp) wins |
-| `edf` | Earliest Deadline First — closest burnout deadline (`last_compile_start + time_to_burnout`) wins, ties broken by arrival order |
+| `edf` | Earliest Deadline First — closest burnout deadline (`compiled_at + time_to_burnout`) wins, ties broken by arrival order |
 
 ## Instructions
 
@@ -141,7 +141,7 @@ is deadlock-free by construction.
   the head of *both* its queues — anyone ahead of it in either queue would have
   had to request even earlier, a contradiction. The earliest waiter is therefore
   always grantable as soon as its dongles are free: nobody is overtaken forever.
-- **`edf`**: a waiting coder's deadline (`last_compile_start + time_to_burnout`)
+- **`edf`**: a waiting coder's deadline (`compiled_at + time_to_burnout`)
   is **frozen** while it waits, whereas every competitor that compiles again
   pushes its own deadline further away. The longer a coder waits, the more urgent
   its deadline becomes relative to the field — it eventually owns the earliest
@@ -163,16 +163,16 @@ so the dongle can never get stuck.
 A dedicated **monitor thread** owns burnout detection — the coders themselves
 never check deadlines:
 
-1. Every 1 ms, it scans all coders, reading `last_compile_start` and
+1. Every 1 ms, it scans all coders, reading `compiled_at` and
    `compilation_done` under `action_lock` (no torn reads).
-2. Deadline = `last_compile_start + time_to_burnout`, initialized to the
+2. Deadline = `compiled_at + time_to_burnout`, initialized to the
    simulation start for every coder.
 3. On expiry it calls `set_stop()` (stop flag + broadcast, waking every waiter)
    and prints `X burned out`.
 
 A 1 ms poll plus the broadcast wake means the message appears within ~1–2 ms of
 the event — comfortably inside the required 10 ms window. Two correctness
-details: `last_compile_start` is written at the *instant* the dongles are
+details: `compiled_at` is written at the *instant* the dongles are
 acquired (a coder that just started compiling can never be falsely reported),
 and coders that already reached `compile_required` are exempt (they finished,
 they didn't burn out).
@@ -190,7 +190,7 @@ under the lock, log timestamps are monotonic by construction.
 |-----------|--------|
 | `pthread_mutex_t general_lock` + `pthread_cond_t general_cond` | All dongle state (`is_usable`, `is_cooling`), every priority queue, and the acquisition protocol; coders block on the cond var |
 | `pthread_mutex_t stop_lock` | The `stop` flag (read constantly via `is_stop()`) |
-| `pthread_mutex_t action_lock` | Coder vitals (`last_compile_start`, `compilation_done`) shared with the monitor, and the log output |
+| `pthread_mutex_t action_lock` | Coder vitals (`compiled_at`, `compilation_done`) shared with the log output |
 
 **Lock hierarchy:** `general_lock` → `action_lock`, and `stop_lock` is a leaf
 (never held while acquiring another lock). The order is never reversed, so the
@@ -241,13 +241,13 @@ half-written value:
 ```c
 /* coder thread, immediately after acquiring both dongles: */
 pthread_mutex_lock(&conf->action_lock);
-coder->last_compile_start = get_time(conf);
+coder->compiled_at = get_time(conf);
 coder->compilation_done++;
 pthread_mutex_unlock(&conf->action_lock);
 
 /* monitor thread, under the same lock: */
 burnt_out = (coder->compilation_done < conf->compile_required
-		&& get_time(conf) >= coder->last_compile_start
+		&& get_time(conf) >= coder->compiled_at
 		+ conf->burnout_time);
 ```
 

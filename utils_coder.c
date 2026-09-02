@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:31 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/31 00:06:44 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/02 17:29:12 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_coder	*new_coder(int id)
 		return (NULL);
 	coder->id = id;
 	coder->compilation_done = 0;
-	coder->last_compile_start = 0;
+	coder->compiled_at = 0;
 	coder->wait_entry = 0;
 	coder->l_dongle = NULL;
 	coder->r_dongle = NULL;

@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:04:49 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/30 17:37:03 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/02 17:29:12 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	edf_sort(t_heap_queue *queue, t_config *conf)
 
 	coder_1 = (queue->coders)[0];
 	coder_2 = (queue->coders)[1];
-	if (coder_1->last_compile_start + conf->burnout_time
-		> coder_2->last_compile_start + conf->burnout_time)
+	if (coder_1->compiled_at + conf->burnout_time
+		> coder_2->compiled_at + conf->burnout_time)
 		swap(queue->coders);
 }
 

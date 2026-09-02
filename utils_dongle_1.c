@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 01:05:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/01 21:38:08 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/02 17:18:57 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	request_dongles(t_coder *coder, t_config *conf)
 		heap_push(coder->l_dongle->queue, coder, conf);
 	if (coder->r_dongle)
 		heap_push(coder->r_dongle->queue, coder, conf);
-	pthread_cond_broadcast(&conf->general_cond);
 	pthread_mutex_unlock(&conf->general_lock);
 }
 
