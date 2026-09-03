@@ -53,7 +53,6 @@ make re     # fclean + all
 ```
 
 Sources live in `coders/`. Compiled with `-Wall -Wextra -Werror -pthread`.
-No external libraries (libft not used).
 
 ### Usage
 
@@ -117,20 +116,6 @@ Every state change is logged as `timestamp_in_ms X <state>`:
   and per-thread argument structs.
 
 ## Blocking cases handled
-
-### Deadlock prevention — breaking Coffman's conditions
-
-| Coffman condition | Status in Codexion |
-|-------------------|--------------------|
-| Mutual exclusion | Inherent — a dongle is a single-user resource. Kept: that's the point of the exercise. |
-| Hold and wait | **Eliminated by all-or-nothing acquisition.** A coder takes both dongles inside one critical section, or takes neither. A blocked coder always holds *zero* dongles. |
-| No preemption | Neutralized — no dongle is ever forcibly taken, but every wait is bounded: at the missed burnout deadline the monitor stops the simulation and wakes all waiters. |
-| Circular wait | **Impossible.** A cycle in the wait-for graph requires every coder in the cycle to *hold* a dongle while waiting for the next. Since waiters hold nothing, no cycle can ever form. |
-
-Because deadlock requires all four conditions at once, eliminating hold-and-wait
-(and making circular wait structurally impossible) is sufficient: the simulation
-is deadlock-free by construction.
-
 ### Burnout prevention (liveness)
 
 - **`fifo`**: queue positions are fixed at request time by the `wait_entry`

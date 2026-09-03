@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/01 22:06:34 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/03 13:05:41 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ long	print_action(t_coder *coder, t_config *conf, char *action)
 
 void	msleep(t_config *conf, long time)
 {
+	long	start;
+
 	if (!conf)
 		return ;
-	while (time && !is_stop(conf))
-	{
+	start = get_time(conf);
+	while (!is_stop(conf) && (get_time(conf) - start) < time)
 		usleep(1000);
-		time --;
-	}
 }

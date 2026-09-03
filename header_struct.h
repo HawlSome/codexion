@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/02 17:29:12 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/03 13:03:32 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct s_dongle
 	int				is_usable;
 	int				is_cooling;
 	int				has_cooled;
-	int				cool_down_time;
 	t_heap_queue	*queue;
 }		t_dongle;
 
