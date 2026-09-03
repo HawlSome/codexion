@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 02:59:10 by varandri          #+#    #+#             */
-/*   Updated: 2026/08/31 00:08:20 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/03 07:08:15 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ static long	coders_count(t_coder *coders)
 		coders = coders->next;
 	}
 	return (count);
+}
+
+void	print_error(long *arg_conf)
+{
+	if (!arg_conf)
+	{
+		printf("Error [args]: Invalid number of arguments (must be 8).");
+		return ;
+	}
+	if (!arg_conf[0] || arg_conf[0] > 300)
+		printf("Error [coders counts]: Coders count"
+			" must be between 0 and 300.\n");
+	else
+		printf("Error [args]: Invalid arguments format. "
+			"(Arguments must be positive numbers except the last one "
+			"that must be 'fifo' or 'edf')\n");
 }
 
 static int	is_valid_dongles(t_dongle *l_dongle, t_dongle *r_dongle)

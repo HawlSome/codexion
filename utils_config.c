@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/02 19:13:34 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/03 07:06:08 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,7 @@ void	init_config(int argc, char **argv, t_config **conf)
 			&& strcmp(argv[argc - 1], "EDF") && strcmp(argv[argc - 1], "FIFO"))
 	)
 	{
-		if (!arg_conf[0] || arg_conf[0] > 300)
-			printf("Error [coders counts]: Coders count"
-				" must be between 0 and 300.\n");
-		else
-			printf("Error [args]: Invalid arguments format. "
-				"(Arguments must be positive numbers)\n");
+		print_error(arg_conf);
 		free(arg_conf);
 		return ;
 	}

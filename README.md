@@ -2,7 +2,8 @@
 
 # Codexion
 
-> Master the race for resources before the deadline masters you.
+## Description
+
 
 **Codexion** is a concurrency simulation in C: several coders share a co-working hub
 with a single Quantum Compiler and a limited pool of USB dongles. Each coder needs
@@ -11,11 +12,7 @@ with a single Quantum Compiler and a limited pool of USB dongles. Each coder nee
 variables and custom priority queues, under one of two arbitration policies:
 `fifo` or `edf` (Earliest Deadline First).
 
-Think *Dining Philosophers* — except the philosophers are coders, the forks are USB
-dongles, and burnout is measured in milliseconds.
-
-## Description
-
+The simulation goes as bellow:
 - One or more coders sit in a circular, inclusive co-working hub; in the center
   stands a shared **Quantum Compiler**. Coder 1 sits next to coder *N*.
 - Coders cycle through three exclusive activities: **compile → debug → refactor** —

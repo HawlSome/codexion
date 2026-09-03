@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 23:58:17 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/03 00:27:37 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/03 07:05:57 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_coder			*heap_pop(t_heap_queue *heap_q, t_coder *coder);
 void			init_config(int argc, char **argv, t_config **conf);
 void			init_coders(t_coder **coders, t_config *conf);
 int				is_valid_coders(t_coder *coders, t_config *conf);
+void			print_error(long *arg_conf);
 
 int				is_priority(t_coder *coder);
 int				is_donlges_available(t_coder *coder);
