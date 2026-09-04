@@ -6,7 +6,7 @@
 #    By: varandri <varandri@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/30 16:45:00 by varandri          #+#    #+#              #
-#    Updated: 2026/09/03 00:10:54 by varandri         ###   ########.fr        #
+#    Updated: 2026/09/04 12:26:15 by varandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ LDFLAGS = -pthread
 
 SRC = main.c helpers.c utils_config.c utils_coder.c utils_cleaner.c \
 		utils_dongle_0.c utils_dongle_1.c utils_queue_0.c utils_queue_1.c \
-		utils_monitor.c utils_simulation_0.c utils_simulation_1.c \
-		utils_verifier.c
+		utils_monitor_0.c utils_monitor_1.c utils_simulation_0.c \
+		utils_simulation_1.c utils_verifier.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)

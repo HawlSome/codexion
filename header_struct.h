@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/03 13:03:32 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/04 12:18:27 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_config
 	int				refactor_time;
 	int				compile_required;
 	int				dongle_cool_down;
+	int				compilation_done;
 	char			*scheduler;
 }		t_config;
 
