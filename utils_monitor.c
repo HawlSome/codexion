@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 00:02:37 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/04 12:25:16 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:38:50 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	*monitoring(void *m_arg)
 	arg = (t_arg *)m_arg;
 	while (!is_stop(arg->conf))
 	{
-		if (simulation_stop(arg->conf))
-			break ;
 		coder = arg->coders;
 		while (coder)
 		{

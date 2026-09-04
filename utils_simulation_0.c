@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:23:27 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/04 12:33:39 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:37:05 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	compile(t_coder *coder, t_config *conf)
 	msleep(conf, conf->compile_time);
 	pthread_mutex_lock(&conf->action_lock);
 	coder->compilation_done++;
-	conf->compilation_done ++;
 	pthread_mutex_unlock(&conf->action_lock);
 	release_dongles(coder, conf);
 }

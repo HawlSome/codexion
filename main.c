@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 07:35:57 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/04 12:39:54 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:40:12 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	start_monitoring(&monitor, conf, coder);
 	start_coders_routines(coder, conf);
 	end_coders_routines(coder);
+	set_stop(conf);
 	pthread_join(monitor, NULL);
 	program_clean(coder, conf);
 	return (0);
