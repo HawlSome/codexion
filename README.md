@@ -98,8 +98,7 @@ timestamp_in_ms coder_id burned out
 ### AI Usage
 - **Thread explanations**: How threads work, how they share the same data, and how to manipulate those
   safely.
-- **Documentation**: polishing the structure and English of this README; every
-  technical claim describes code I wrote and can defend.
+- **Documentation**: structuring and polishing the README of this project.
 
 ## Blocking cases handled
 
