@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:56:21 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/04 12:18:27 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/04 17:31:55 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ typedef struct s_config
 	pthread_mutex_t	stop_lock;
 	pthread_mutex_t	action_lock;
 	pthread_cond_t	general_cond;
-	int				stop;
-	int				coders_count;
-	int				burnout_time;
-	int				compile_time;
-	int				debug_time;
-	int				refactor_time;
-	int				compile_required;
-	int				dongle_cool_down;
-	int				compilation_done;
+	long			stop;
+	long			coders_count;
+	long			burnout_time;
+	long			compile_time;
+	long			debug_time;
+	long			refactor_time;
+	long			compile_required;
+	long			dongle_cool_down;
+	long			compilation_done;
 	char			*scheduler;
 }		t_config;
 
@@ -44,7 +44,7 @@ typedef struct s_coder
 {
 	pthread_t		thread;
 	int				id;
-	int				compilation_done;
+	long			compilation_done;
 	t_dongle		*l_dongle;
 	t_dongle		*r_dongle;
 	long			compiled_at;
