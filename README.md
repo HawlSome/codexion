@@ -102,14 +102,18 @@ timestamp_in_ms coder_id burned out
 
 ## Blocking cases handled
 
-- **Deadlock prevention (Coffman conditions):** a coder never partially acquires a
-  dongle and blocks waiting for the second one. Both requests are registered together
-  (`request_dongles` pushes the coder into both of its dongles' wait queues), and the
-  coder only proceeds to actually take dongles once it is simultaneously the
-  highest-priority requester on *both* queues **and** both dongles are physically free
-  and off cooldown. This removes the "hold and wait" condition that causes circular
-  deadlocks in the classic dining-philosophers setup — note that this alone is what
-  prevents deadlock; the odd/even start delay described below is unrelated to it.
+- **Deadlock prevention — breaking Coffman's conditions**
+
+| Coffman condition | Status in Codexion |
+|-------------------|--------------------|
+| Mutual exclusion | **Inevitable** — a dongle is a single-user resource. Kept: that's the point of the exercise. |
+| Hold and wait | **Eliminated by all-or-nothing acquisition.** A coder takes both dongles inside one critical section, or takes neither. A blocked coder always holds *zero* dongles. |
+| No preemption | **Neutralized** — no dongle is ever forcibly taken, but every wait is bounded: at the missed burnout deadline the monitor stops the simulation and wakes all waiters. |
+| Circular wait | **Impossible.** A cycle in the wait-for graph requires every coder in the cycle to *hold* a dongle while waiting for the next. Since waiters hold nothing, no cycle can ever form. |
+
+Because deadlock requires all four conditions at once, eliminating hold-and-wait
+(and making circular wait structurally impossible) is sufficient: the simulation
+is deadlock-free by construction.
 - **Starvation prevention:** each dongle's 2-slot wait queue is reordered on every push
   according to the chosen `scheduler` — `fifo` orders by request arrival time, `edf`
   orders by earliest burnout deadline (`last_compile_start + time_to_burnout`) — so the
