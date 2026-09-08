@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 02:59:10 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/03 07:08:15 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/05 07:03:48 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void	print_error(long *arg_conf)
 		printf("Error [args]: Invalid number of arguments (must be 8).");
 		return ;
 	}
-	if (!arg_conf[0] || arg_conf[0] > 300)
+	if (!arg_conf[2] || !arg_conf[3] || !arg_conf[4] || !arg_conf[5])
+	{
+		printf("Error [args]: Compilation | Debug | Refactor - time "
+			"or required compilation value must be a positive number .\n");
+	}
+	else if (!arg_conf[0] || arg_conf[0] > 300)
 		printf("Error [coders counts]: Coders count"
 			" must be between 0 and 300.\n");
 	else
