@@ -6,7 +6,7 @@
 /*   By: varandri <varandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 17:54:34 by varandri          #+#    #+#             */
-/*   Updated: 2026/09/03 13:05:41 by varandri         ###   ########.fr       */
+/*   Updated: 2026/09/22 23:47:19 by varandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ long	print_action(t_coder *coder, t_config *conf, char *action)
 	long	now_ms;
 
 	if (!coder || !conf || !action)
+		return (0);
+	if (is_stop(conf) && strcmp("burned out", action))
 		return (0);
 	pthread_mutex_lock(&conf->action_lock);
 	now_ms = get_time(conf);
